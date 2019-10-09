@@ -4,23 +4,89 @@
 	<meta charset="UTF-8">
 	<title>Snap-10-9</title>
 	<script>
-		let fieldOne =;
-		let fieldTwo =;
+		function multiply(numOne,numTwo) {
+			return numOne * numTwo;
+		}
+		function concat(strOne,strTwo) {
+			return `${strOne}${strTwo}`;
+		}
+		console.log(multiply(5,9));
+		console.log(concat('I am a cat. ','I want to watch the world burn.'));
+
+		//ignore this lmao
+		/*
+		//starts function on page load
+		window.onload = function () {
+			initSnapChallenge();
+		};
+
+		//defines variables for elements
+		let fieldOne = document.getElementById(fieldOne);
+		let fieldTwo = document.getElementById(fieldTwo);
+		let ansVal = document.getElementById(answerField);
+
+		//adds event listeners
+		function initSnapChallenge() {
+			let addb = document.getElementById("add");
+			let subb = document.getElementById("sub");
+			let prodb = document.getElementById("product");
+			let divb = document.getElementById("divide");
+			let concb = document.getElementById("concat");
+			addb.addEventListener("submit", (event) => {
+				handleItemForm(event, form);
+				addNums(fieldOne,fieldTwo);
+			});
+			subb.addEventListener("submit", (event) => {
+				handleItemForm(event, form);
+				subNums(fieldOne,fieldTwo);
+			});
+			prodb.addEventListener("submit", (event) => {
+				handleItemForm(event, form);
+				prodNums(fieldOne,fieldTwo);
+			});
+			divb.addEventListener("submit", (event) => {
+				handleItemForm(event, form);
+				divNums(fieldOne,fieldTwo);
+			});
+			concb.addEventListener("submit", (event) => {
+				handleItemForm(event, form);
+				concatStrings(fieldOne,fieldTwo);
+			});
+		}
+		function handleItemForm(event, formRef) {
+			if(event.preventDefault) {
+				event.preventDefault();
+			}
+			formRef.reset();
+			return false;
+		}
+
+		//basic functions for simple arithmatic and concatenating
 		function addNums(fieldOne, fieldTwo) {
-			return ans = fieldOne + fieldTwo;
+			let ans = fieldOne.value + fieldTwo.value;
+			setSpan(ans);
 		}
 		function subNums(fieldOne, fieldTwo) {
-			return ans = fieldOne - fieldTwo;
+			let ans = fieldOne.value - fieldTwo.value;
+			setSpan(ans);
 		}
 		function prodNums(fieldOne, fieldTwo) {
-			return ans = fieldOne * fieldTwo;
+			let ans = fieldOne.value * fieldTwo.value;
+			setSpan(ans);
 		}
 		function divNums(fieldOne, fieldTwo) {
-			return ans = fieldOne / fieldTwo;
+			let ans = fieldOne.value / fieldTwo.value;
+			setSpan(ans);
 		}
 		function concatStrings(fieldOne, fieldTwo) {
-			return ans = `${fieldOne} ${fieldTwo}`;
+			let ans = `${fieldOne.value} ${fieldTwo.value}`;
+			setSpan(ans);
 		}
+
+		//sets the returned answer to the span element
+		function setSpan(ans) {
+			answerField.innerText = ans;
+		}*/
 	</script>
 </head>
 <body>
@@ -28,11 +94,12 @@
 		<form>
 			<input type="text" id="fieldOne">
 			<input type="text" id="fieldTwo">
-			<button onclick="" id="add">Add</button>
-			<button onclick="" id="sub">Subtract</button>
-			<button onclick="" id="product">Multiply</button>
-			<button onclick="" id="divide">Divide</button>
-			<button onclick="" id="concat">Concatenate Strings</button>
+			<button type="submit" onclick="addNums()" id="add">Add</button>
+			<button type="submit" onclick="subNums()" id="sub">Subtract</button>
+			<button type="submit" onclick="prodNums()" id="product">Multiply</button>
+			<button type="submit" onclick="divNums()" id="divide">Divide</button>
+			<button type="submit" onclick="concatStrings()" id="concat">Concatenate Strings</button>
+			<span id="answerField"></span>
  		</form>
 	</div>
 </body>
