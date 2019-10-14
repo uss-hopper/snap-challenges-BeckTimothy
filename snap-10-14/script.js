@@ -13,13 +13,11 @@ function convertToGrams(weight, unit) {
 }
 
 function sumOfFactors(num) {
-	let value = 0;
-	for(i = num; i>=0; i--){
+	let val = 0;
+	for(i = num; i >= 0; i--){
 		if(num % i === 0) {
-			value = value + i;
+			val += i;
 		}
 	}
-	return value;
+	return val;
 }
-
-console.log(sumOfFactors(10));
