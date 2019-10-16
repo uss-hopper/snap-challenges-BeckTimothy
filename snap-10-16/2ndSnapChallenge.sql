@@ -1,0 +1,1 @@
+SELECT tweetContent, profileAtHandle FROM tweet JOIN like WHERE tweetId === "0536faef082b454e9d444cdbe7887d7a";
