@@ -1,7 +1,7 @@
 drop table if exists Task;
 
 create table Task(
-   taskId binary(16) not null,
+   taskId binary(20) not null,
 	taskDueDate datetime,
 	taskDescription varchar(256),
 	taskPriority varchar(64) not null,
