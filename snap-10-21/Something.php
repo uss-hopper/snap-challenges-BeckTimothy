@@ -44,7 +44,7 @@ class Something {
 		//checks if int
 		$newSomethingId = filter_var($newSomethingId, FILTER_SANITIZE_NUMBER_INT);
 		if($newSomethingId === false) {
-			throw(new \InvalidArgumentException('Something Id is not a number.'))
+			throw(new \InvalidArgumentException('Something Id is not a number.'));
 		}
 		$this->somethingId = $newSomethingId;
 	}
