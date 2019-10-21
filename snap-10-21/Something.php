@@ -67,7 +67,8 @@ class Something {
 	}
 	public function exposeSomething($somethingName) {
 		//exposes something as something else merely disguised as something.
-		$this->somethingName = 'somethingDisguisedAs' . $somethingName;
+		$this->somethingName = "Something Disguised As $somethingName";
+		return($this->somethingName);
 	}
 
 	/**
