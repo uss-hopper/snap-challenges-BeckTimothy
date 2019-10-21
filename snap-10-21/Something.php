@@ -70,4 +70,22 @@ class Something {
 		$this->somethingName = 'somethingDisguisedAs' . $somethingName;
 	}
 
+	/**
+	 * constructor for the something class
+	 *
+	 * @param int $newSoemthingId
+	 * @param string $newSomethingName
+	 * @throws \InvalidArgumentException if data types violate type hints
+	 */
+	public function __construct($newSomethingId, $newSomethingName) {
+		try {
+			$this->setSomethingId($newSomethingId);
+			$this->setSomethingName($newSomethingName);
+		}
+		catch(\InvalidArgumentException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
 }
