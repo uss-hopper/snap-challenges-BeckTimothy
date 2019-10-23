@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Git Flow</title>
+</head>
+<body>
+<h1>Types of branches in Git Flow</h1>
+<ul>
+	<li><strong>Master</strong> Is never developed on, has the release branch merged into it after proper testing.</li>
+	<li><strong>Development/Integration</strong> is never developed on, has the active ticket branches merged into it when completed, and merges into release branch after a little bit of debugging</li>
+	<li><strong>Active Ticket Branch</strong>The only branches that are actively developed on, are checkedout when a new ticket is generated and are merged into integration branch when completed.</li>
+	<li><strong>Release Test Branch</strong>Integration branch is merged into this towards the end of a sprint for final thorough testing and bugfixing before merging to the master branch</li>
+	<li><strong>Hotfix</strong>Should never be used except in DIRE situations. checked out solely to fix a single critical error then is merged into master.</li>
+</ul>
+</body>
+</html>
