@@ -408,10 +408,34 @@ class Tweet implements \JsonSerializable {
 	 * @throws \PDOException when MySQL related error occurs
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getAllTweetsByTweetDate(\PDO $pdo) : \SplFixedArray {
+	public static function getAllTweetsByTweetDate(\PDO $pdo, $tweetDate) : \SplFixedArray {
+		//validate DateTime parameter
+		try {
+			$tweetDate = self::validateDateTime($tweetDate);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 		//create query template
-
+		$query = "SELECT tweetId, tweetProfileId, tweetContent, tweetDate FROM tweet WHERE tweetDate = :tweetDate";
+		$statement = $pdo->prepare($query);
+		//create parameters for query
+		$parameters = ['tweetDate' => $tweetDate];
+		$statement->execute($parameters);
 		//build array of tweets
+		$tweets = new \SplFixedArray($statement->rowCount());
+	$statement->setFetchMode(\PDO::FETCH_ASSOC);
+	while(($row = $statement->fetch()) !== false) {
+		try {
+			$tweet = new Tweet($row["tweetId"], $row["tweetProfileId"], $row["tweetContent"], $row["tweetDate"]);
+			$tweets[$tweets->key()] = $tweet;
+			$tweets->next();
+		} catch(\Exception $exception) {
+			//if row can't be converted throw error
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+	}
+	return ($tweets);
 	}
 
 
@@ -437,13 +461,5 @@ class Tweet implements \JsonSerializable {
 		//format the date so that the front end can consume it
 		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
 		return($fields);
-	}
-}
-Composer Configuration
-In order to use the validate uuid, you need to use Composer to integrate the Uuid class. A minimal composer.json file is here. A full treatment of Composer is on the package managers page.
-
-{
-	"require": {
-	"ramsey/uuid": "@stable"
 	}
 }
