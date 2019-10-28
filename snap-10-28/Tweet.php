@@ -401,6 +401,29 @@ class Tweet implements \JsonSerializable {
 	}
 
 	/**
+	 * get all tweets by $tweet date
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray of tweets found or null if not found
+	 * @throws \PDOException when MySQL related error occurs
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getAllTweetsByTweetDate(\PDO $pdo) : \SplFixedArray {
+		//create query template
+
+		//build array of tweets
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
