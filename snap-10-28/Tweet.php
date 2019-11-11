@@ -418,16 +418,12 @@ class Tweet implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 		// change DateTime objects to same time each day
-		$startDateString = $tweetDate->format('Y-m-d') . ' 00:00:00';
-		$startDate = new DateTime($startDateString);
-		$endDate = new DateTime($startDateString);
-		$endDate->add(new \DateInterval('P1D'));
-
+		$tweetDate = $tweetDate->format('Y-m-d') . ' 00:00:00';
 		//create query template
-		$query = "SELECT tweetId, tweetProfileId, tweetContent, tweetDate FROM tweet WHERE tweetDate >= :startDate AND tweetDate < :endDate";
+		$query = "SELECT tweetId, tweetProfileId, tweetContent, tweetDate FROM tweet WHERE DATE(tweetDate) = :tweetDate";
 		$statement = $pdo->prepare($query);
 		//create parameters for query
-		$parameters = ['startDate' => $startDate->format("Y-m-d H:i:s.u"), 'endDate' => $startDate->format("Y-m-d H:i:s.u")];
+		$parameters = ['tweetDate' => $tweetDate];
 		$statement->execute($parameters);
 		//build array of tweets
 		$tweets = new \SplFixedArray($statement->rowCount());
