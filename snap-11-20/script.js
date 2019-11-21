@@ -13,6 +13,11 @@ function countNumsInArray(array) {
 	return countedArray.filter(item => item.includes("is in the"));
 }
 
+testArray = [0,0,1,1,1,1,2,3,4,5,7,7,7,9,9];
+console.log(countNumsInArray(testArray));
+
+
+
 function buzzfizz(int1, int2) {
 	let min, max;
 	if(int1 >= int2) {
@@ -30,4 +35,4 @@ function buzzfizz(int1, int2) {
 	}
 }
 
-console.log(buzzfizz(23,52));
+//console.log(buzzfizz(23,52));
