@@ -231,8 +231,7 @@ const arr = [
 	}
 ];
 
-arr.map(function(object) {
-	delete object.company;
-});
+arr.map(object => delete object.company);
 
 console.log(arr);
+
